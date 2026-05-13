@@ -1,0 +1,103 @@
+{
+  "entities": {
+    "Category": {
+      "title": "Category",
+      "description": "Menu category (e.g., Drinks, Main Course)",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" }
+      },
+      "required": ["name"]
+    },
+    "MenuItem": {
+      "title": "Menu Item",
+      "description": "A food or drink item on the menu",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "categoryId": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "stock": { "type": "number" },
+        "isActive": { "type": "boolean" }
+      },
+      "required": ["name", "price", "categoryId", "stock", "isActive"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "A customer order",
+      "type": "object",
+      "properties": {
+        "customerName": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "quantity": { "type": "number" },
+              "price": { "type": "number" }
+            }
+          }
+        },
+        "total": { "type": "number" },
+        "promoCode": { "type": "string" },
+        "discount": { "type": "number" },
+        "finalTotal": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "paid", "cancelled", "completed"] },
+        "queueNumber": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "paymentMethod": { "type": "string" }
+      },
+      "required": ["items", "total", "finalTotal", "status", "queueNumber", "createdAt"]
+    },
+    "PromoCode": {
+      "title": "Promo Code",
+      "description": "Discount codes for orders",
+      "type": "object",
+      "properties": {
+        "code": { "type": "string" },
+        "type": { "type": "string", "enum": ["percent", "fixed"] },
+        "value": { "type": "number" },
+        "minPurchase": { "type": "number" },
+        "isActive": { "type": "boolean" },
+        "expiresAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["code", "type", "value", "isActive"]
+    },
+    "QueueSetting": {
+      "title": "Queue Setting",
+      "description": "Daily queue counter and tracking",
+      "type": "object",
+      "properties": {
+        "currentNumber": { "type": "number" },
+        "lastResetDate": { "type": "string" }
+      },
+      "required": ["currentNumber", "lastResetDate"]
+    }
+  },
+  "firestore": {
+    "categories": {
+      "schema": "Category",
+      "description": "Collection of menu categories"
+    },
+    "menu_items": {
+      "schema": "MenuItem",
+      "description": "Collection of available food and drinks"
+    },
+    "orders": {
+      "schema": "Order",
+      "description": "Collection of customer orders"
+    },
+    "promo_codes": {
+      "schema": "PromoCode",
+      "description": "Discount codes"
+    },
+    "settings/queue": {
+      "schema": "QueueSetting",
+      "description": "Global queue settings"
+    }
+  }
+}

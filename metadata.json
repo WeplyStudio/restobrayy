@@ -1,0 +1,6 @@
+{
+  "name": "RestoFlow: Restaurant Management Platform",
+  "description": "A comprehensive restaurant platform including catalog, ordering, daily-resetting queuing system, stock management, promo codes, and admin dashboard with sales reporting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

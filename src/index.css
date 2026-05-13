@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300..700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+}
+
+@layer base {
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f4f4f5;
+    --text-primary: #000000;
+    --text-secondary: #71717a;
+    --border-primary: rgba(0, 0, 0, 0.1);
+    --toast-bg: #ffffff;
+    --toast-text: #000000;
+    --toast-border: rgba(0, 0, 0, 0.1);
+  }
+
+  .dark {
+    --bg-primary: #080808;
+    --bg-secondary: #0c0c0c;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --border-primary: rgba(255, 255, 255, 0.1);
+    --toast-bg: #0c0c0c;
+    --toast-text: #ffffff;
+    --toast-border: rgba(255, 255, 255, 0.1);
+  }
+
+  body {
+    @apply font-sans transition-colors duration-300;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
